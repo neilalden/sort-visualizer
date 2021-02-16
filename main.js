@@ -111,8 +111,6 @@ const animateMergeSort = () => {
 	console.log(animationArray);
 };
 
-const quickSort = () => {};
-
 const bubbleSort = (arr) => {
 	const animationArray = [];
 	for (let i = 0; i < arr.length; i++) {
@@ -132,6 +130,8 @@ const bubbleSort = (arr) => {
 
 	return animationArray;
 };
+const quickSort = () => {};
+
 const merge = (arr) => {
 	if (arr.length <= 1) return arr;
 	let mid = Math.floor(arr.length / 2);
