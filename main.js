@@ -3,6 +3,7 @@ const arrayContainer = document.getElementById("array-container");
 const arrayBars = document.getElementsByClassName("array-bar");
 const sizeRange = document.getElementById("size-range");
 const speedRange = document.getElementById("speed-range");
+const clickable = document.getElementsByClassName("clickable");
 
 // constants
 const ARRAY = [];
@@ -10,8 +11,11 @@ let SIZE = sizeRange.value;
 let SPEED = speedRange.value;
 let WIDTH = 40;
 let SHOWVALUE = true;
-
 //
+if (window.screen.width < 400) {
+	sizeRange.setAttribute("max", "70");
+	SHOWVALUE = false;
+}
 speedRange.addEventListener("change", () => {
 	SPEED = speedRange.value;
 });
@@ -44,13 +48,18 @@ sizeRange.addEventListener("change", () => {
 	}
 	generateNewArray();
 });
+const disableClickables = (x) => {
+	for (let i = 0; i < clickable.length; i++) {
+		clickable[i].disabled = x;
+	}
+};
 
 const displayArray = (arr) => {
 	arrayContainer.innerHTML = "";
 	for (let i = 0; i < arr.length; i++) {
 		arrayContainer.innerHTML += `<div id='${i}' class='array-bar' style='height:${
 			arr[i]
-		}px; width:${WIDTH}px'><span class="ms-1">${
+		}px; width:${WIDTH}px'><span class="ms-2">${
 			SHOWVALUE ? arr[i] : ""
 		}</span></div>`;
 	}
@@ -66,6 +75,7 @@ const generateNewArray = () => {
 
 const animateBubbleSort = () => {
 	const animationArray = bubbleSort(ARRAY);
+	disableClickables(true);
 	for (let i = 0; i < animationArray.length; i++) {
 		setTimeout(() => {
 			for (let j = 0; j < arrayBars.length; j++) {
@@ -164,4 +174,5 @@ const animationFinished = () => {
 			arrayBars[i].style.backgroundColor = "#198754";
 		}, i * SPEED);
 	}
+	disableClickables(false);
 };

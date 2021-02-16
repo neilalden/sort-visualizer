@@ -41,6 +41,10 @@ span {
 nav {
 	border-bottom: #333 solid 1px;
 }
+.range-btn {
+	font-weight: bolder;
+	font-size: 14px;
+}
 #array-container {
 	display: flex;
 	width: fit-content;
